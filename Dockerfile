@@ -3,6 +3,7 @@ COPY main.go .
 ENV GOPROXY https://goproxy.io
 
 RUN apk add --no-cache ca-certificates git && \
+    go mod init main && \
     go get -d -v ./... && \
     go build main.go
 
