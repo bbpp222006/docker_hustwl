@@ -10,6 +10,7 @@ import (
 )
 
 func main()  {
+	
 	userId := os.Getenv("userId")
 	password := os.Getenv("pass")
 	fmt.Printf("当前账号:%s ,密码:%s\n",userId,password)

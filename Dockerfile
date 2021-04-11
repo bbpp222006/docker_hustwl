@@ -1,9 +1,7 @@
 FROM golang:alpine
-COPY . .
+COPY . ./src
 
 RUN cd ./src && \
-    go mod init main && \
-    go get ./... && \
     go build main.go
 
 
