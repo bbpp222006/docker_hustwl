@@ -1,4 +1,3 @@
-use std::fs;
 use std::time::Duration;
 use std::{io, thread};
 use std::env;
