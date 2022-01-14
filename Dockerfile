@@ -1,10 +1,16 @@
-FROM golang:alpine
-COPY . ./src
+FROM ekidd/rust-musl-builder:1.49.0 AS BUILDER
 
-RUN cd ./src && \
-    go build main.go
+ADD --chown=rust:rust . ./
 
 
-FROM alpine
-COPY --from=0 /go/src/main .
-CMD ["./main"]
+RUN sudo chmod 777 ~/.cargo/config \
+    && cargo build --release
+
+
+FROM alpine:3.11
+
+COPY --from=builder \
+    /home/rust/src/target/x86_64-unknown-linux-musl/release/hustwl \
+    /usr/local/bin/
+
+ENTRYPOINT ["hustwl"]
