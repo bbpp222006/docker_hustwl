@@ -3,8 +3,7 @@ FROM ekidd/rust-musl-builder:1.49.0 AS BUILDER
 ADD --chown=rust:rust . ./
 
 
-RUN sudo chmod 777 ~/.cargo/config \
-    && cargo build --release
+RUN cargo build --release
 
 
 FROM alpine:3.11
